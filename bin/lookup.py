@@ -6,6 +6,8 @@ ip_address = argv[2]
 
 with open (prefix_file) as f:
     for prefix in f:
-        network = ip_network(prefix.strip())
-        if ip_address in [str(x) for x in network]:
-            print(network)
+        prefix = prefix.strip()
+        if prefix:
+            network = ip_network(prefix.strip())
+            if ip_address in [str(x) for x in network]:
+                print(network)
