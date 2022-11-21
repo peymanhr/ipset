@@ -6,8 +6,8 @@ import argparse
 from argparse import RawTextHelpFormatter
 
 parser = argparse.ArgumentParser(
-    prog = "Prefix List Processor",
-    description = "Generate IP address list configuration for different formats. from STDIN",
+    prog = "python3 prefix_list_processor.py",
+    description = "Generate IP address list configuration for different formats from STDIN",
     epilog = "Copyright (c) 2022 peymanhr <phooshmand@gmail.com>",
     formatter_class=RawTextHelpFormatter)
 
