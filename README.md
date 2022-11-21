@@ -38,11 +38,11 @@ add address=5.104.208.0/21 list=ir
 ## Lookup an IP address in a prefixes file
 
 ```
-$ python3 bin/lookup.py prefixes/<path_to_prefixes_file> <ip address>
+$ cat prefixes/<path_to_prefixes_file> | python3 bin/lookup.py <ip address>
 ```
 ### example:
 ```
-$ python3 bin/lookup.py prefixes/iran/iran_prefixes.txt 5.210.205.201
+$ cat prefixes/iran/iran_prefixes.txt | python3 bin/lookup.py 5.210.205.201
 ```
 #### output:
 ```
