@@ -22,24 +22,27 @@ parser.add_argument("--negate", action="store_true",
 
 args = parser.parse_args()
 
+if args.format == "yaml" and args.name:
+    print(f"{args.name}:", end="\n")
+
 for prefix in stdin:
     if prefix not in ["\r\n", "\n"]:
-        if args.format == 'ipset':    
+        if args.format == "ipset":    
             print(f"ipset add {args.name} {prefix.strip()}", end="\n")
 
-        elif args.format == 'mikrotik':
+        elif args.format == "mikrotik":
             print(f"add address={prefix.strip()} list={args.name}", end="\r\n")
 
-        elif args.format == 'apache':
+        elif args.format == "apache":
             print(f"Require {'not ' if args.negate else '' }ip {prefix.strip()}", end="\n")
 
-        elif args.format == 'nginx':
+        elif args.format == "nginx":
             print(f"{'Deny' if args.negate else 'Allow'} {prefix.strip()};", end="\n")
 
-        elif args.format == 'cisco':
+        elif args.format == "cisco":
             prefix = prefix.strip()
             print(f"{'deny' if args.negate else 'permit'} {prefix.split('/')[0]} {ip_network(prefix).hostmask}", end="\n")
 
         elif args.format == "yaml":
             prefix = prefix.strip()
-            print(f"- {prefix}", end="\n")
+            print(f"  - {prefix}", end="\n")
