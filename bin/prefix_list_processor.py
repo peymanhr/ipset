@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser(
     formatter_class=RawTextHelpFormatter)
 
 parser.add_argument("format", type=str,
-                    help="ipset mikrotik apache nginx cisco")
+                    help="ipset mikrotik apache nginx cisco yaml")
 
 parser.add_argument("-n", "--name", type=str, required=False,
                     help="address list name or access list number")
@@ -38,4 +38,8 @@ for prefix in stdin:
 
         elif args.format == 'cisco':
             prefix = prefix.strip()
-            print(f"{'deny' if args.negate else 'permit'} {prefix} {ip_network(prefix).hostmask}", end="\n")
+            print(f"{'deny' if args.negate else 'permit'} {prefix.split('/')[0]} {ip_network(prefix).hostmask}", end="\n")
+
+        elif args.format == "yaml":
+            prefix = prefix.strip()
+            print(f"- {prefix}", end="\n")
