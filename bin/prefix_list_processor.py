@@ -31,7 +31,7 @@ for prefix in stdin:
             print(f"ipset add {args.name} {prefix.strip()}", end="\n")
 
         elif args.format == "mikrotik":
-            print(f"add address={prefix.strip()} list={args.name}", end="\r\n")
+            print(f"add address={prefix.strip()} list={args.name}", end="\r")
 
         elif args.format == "apache":
             print(f"Require {'not ' if args.negate else '' }ip {prefix.strip()}", end="\n")
